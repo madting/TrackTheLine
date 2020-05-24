@@ -5,11 +5,11 @@ const client = require('../database')
 
 router.get('/', (req, res) => {
 client
-.query('Select * from patient_profile')
+.query('Select * from patients_profile')
 .then((data) => res.send(data))
 .catch ((err) => console.log(err))
 
 })
 
 
-module.export  = router;
+module.exports  = router;
