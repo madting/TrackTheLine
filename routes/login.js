@@ -5,8 +5,8 @@ const client = require('../database')
 
 router.get('/', (req, res) => {
 client
-.query('Select * from patients_profile')
-.then((data) => res.send(data))
+.query("Select * from patient_profiles")
+.then((data) => res.json(data))
 .catch ((err) => console.log(err))
 
 })

@@ -2,12 +2,14 @@ const express = require('express')
 const app = express()
 const port = 2000
 const test = require('./routes/login')
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const bodyParser = require('body-parser')
 
 
-app.use('/', test)
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+app.use('/test', test);
 
 app.get('/', (req, res) => {
 res.status(200).json({success : true})})
