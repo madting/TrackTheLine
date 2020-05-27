@@ -1,11 +1,13 @@
 const express = require("express");
+// loading module express router
 const router = express.Router();
-const client = require('../database')
+// accessing database data
+const client = require('../database/database')
 
 
 router.get('/', (req, res) => {
 client
-.query("Select * from patient_profiles")
+.query("Select * from patient_profile")
 .then((data) => res.json(data))
 .catch ((err) => console.log(err))
 
