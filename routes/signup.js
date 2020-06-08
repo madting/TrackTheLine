@@ -26,13 +26,13 @@ const createPatient = (req, res, next) => {
           email,
           password,
           first_name,
-          last_name,
           dob,
+          last_name,
           mobile_number,
         ]
       )
       .then((data) => res.json(data.rows.email))
-      .catch((e) => res.sendStatus(404).json(e));
+      .catch((e) => console.log(e));
   }
 };
 
@@ -47,7 +47,7 @@ const createDcoctor = (req, res, next) => {
         [email, password, website, contact_number]
       )
       .then((data) => res.json(data.rows))
-      .catch((e) => res.sendStatus(404).json(e));
+      .catch((e) => console.log(e));
   }
 };
 

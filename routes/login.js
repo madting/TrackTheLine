@@ -19,15 +19,31 @@ router.post("/login", (req, res, next) => {
         });
         res.send(token);
       } else {
-        res.send(401);
+        res.send(404);
       }
     })
     .catch((e) => console.log(e));
 });
 
-router.get("/all", (req, res, next) => {
+const verify = (req, res, next) => {
+  const { authorization } = req.headers;
+  try {
+    const verification = jwt.verify(authorization, "secretSauce");
+    if (verification) next();
+    else res.sendStatus(401);
+  } catch (error) {
+    res.sendStatus(401);
+  }
+};
+router.get("/all", (req, res) => {
   client
-    .query("Select * from patient_profile")
+    .query("Select * from doctor_profile")
+    .then((data) => res.json(data.rows))
+    .catch((err) => console.log(err));
+});
+router.get("/home", verify, (req, res, next) => {
+  client
+    .query("Select * from doctor_profile")
     .then((data) => res.json(data.rows))
     .catch((err) => console.log(err));
 });
